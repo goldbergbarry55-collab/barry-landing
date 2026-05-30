@@ -38,12 +38,6 @@ export default function Home() {
       setStatus("success");
       setMessage(data.message || "Successfully subscribed!");
       setEmail("");
-
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setStatus("idle");
-        setMessage("");
-      }, 5000);
     } catch (error) {
       setStatus("error");
       setMessage("Failed to subscribe. Please try again.");
@@ -281,65 +275,120 @@ export default function Home() {
               monthly — practical tools for anxiety, boundaries, burnout, and
               emotional resilience. No fluff, no jargon.
             </p>
-            <form
-              onSubmit={handleSubmit}
-              style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}
-            >
-              <input
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={status === "loading"}
-                style={{
-                  background: "#111",
-                  border: `1px solid ${status === "error" ? "#ff6b6b" : "#333"}`,
-                  borderRadius: "8px",
-                  padding: "0.875rem 1.25rem",
-                  color: "#fff",
-                  fontSize: "0.95rem",
-                  outline: "none",
-                  width: "100%",
-                  opacity: status === "loading" ? 0.6 : 1,
-                  cursor: status === "loading" ? "not-allowed" : "text",
-                }}
-              />
-              <button
-                type="submit"
-                disabled={status === "loading" || status === "success"}
-                style={{
-                  background: status === "success" ? "#44aa00" : "#CCFF00",
-                  color: "#0A0A0A",
-                  border: "none",
-                  borderRadius: "8px",
-                  padding: "0.875rem 1.5rem",
-                  fontWeight: 700,
-                  fontSize: "0.95rem",
-                  cursor: status === "loading" || status === "success" ? "not-allowed" : "pointer",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                  opacity: status === "loading" || status === "success" ? 0.8 : 1,
-                  transition: "all 0.3s ease",
-                }}
-              >
-                {status === "loading" ? "Subscribing..." : status === "success" ? "✓ Subscribed!" : "Send Me the Guides"}
-              </button>
-            </form>
-            {message && (
-              <p
-                style={{
-                  color: status === "error" ? "#ff6b6b" : status === "success" ? "#66bb6a" : "#888",
-                  fontSize: "0.85rem",
-                  marginTop: "0.5rem",
-                  textAlign: "center",
-                }}
-              >
-                {message}
-              </p>
+            {status === "success" ? (
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "0.5rem" }}>
+                <div style={{ background: "#111", border: "1px solid #CCFF00", borderRadius: "12px", padding: "1.25rem 1.5rem", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  <span style={{ fontSize: "1.25rem" }}>✓</span>
+                  <p style={{ color: "#CCFF00", fontWeight: 700, fontSize: "0.9rem", margin: 0 }}>
+                    You&apos;re in. Here are your 3 free guides:
+                  </p>
+                </div>
+                {[
+                  {
+                    num: "01",
+                    title: "The Anxiety Loop Breakdown",
+                    desc: "Why your brain keeps looping — and how to stop it.",
+                    href: "https://drive.google.com/file/d/1FAn0yccGDcyGhCghTHVLcmEvwbf4Ng3Z/view?usp=sharing",
+                  },
+                  {
+                    num: "02",
+                    title: "Running on Empty",
+                    desc: "The burnout guide — recognise the signs before it's too late.",
+                    href: "https://drive.google.com/file/d/10f5vhpXjHBhRanmygWTouwlAPv2Yz6Xn/view?usp=sharing",
+                  },
+                  {
+                    num: "03",
+                    title: "Stop Saying Yes",
+                    desc: "How to set boundaries without guilt or losing people you love.",
+                    href: "https://drive.google.com/file/d/1r-6Fi7OA4YYAuqdm5qTZit2DXC32Q_FC/view?usp=sharing",
+                  },
+                ].map((guide) => (
+                  <a
+                    key={guide.num}
+                    href={guide.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "1rem",
+                      background: "#111",
+                      border: "1px solid #222",
+                      borderLeft: "3px solid #CCFF00",
+                      borderRadius: "8px",
+                      padding: "1rem 1.25rem",
+                      textDecoration: "none",
+                      transition: "border-color 0.2s",
+                    }}
+                  >
+                    <span style={{ fontFamily: "var(--font-bebas), sans-serif", fontSize: "1.5rem", color: "#CCFF00", lineHeight: 1, minWidth: "2rem" }}>{guide.num}</span>
+                    <div style={{ flex: 1 }}>
+                      <p style={{ color: "#fff", fontWeight: 700, fontSize: "0.9rem", margin: "0 0 0.2rem 0" }}>{guide.title}</p>
+                      <p style={{ color: "#666", fontSize: "0.8rem", margin: 0 }}>{guide.desc}</p>
+                    </div>
+                    <span style={{ color: "#CCFF00", fontSize: "1.1rem", fontWeight: 700 }}>↓</span>
+                  </a>
+                ))}
+                <p style={{ color: "#555", fontSize: "0.75rem", textAlign: "center" }}>
+                  Bookmark this page — links are always available here.
+                </p>
+              </div>
+            ) : (
+              <>
+                <form
+                  onSubmit={handleSubmit}
+                  style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}
+                >
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={status === "loading"}
+                    style={{
+                      background: "#111",
+                      border: `1px solid ${status === "error" ? "#ff6b6b" : "#333"}`,
+                      borderRadius: "8px",
+                      padding: "0.875rem 1.25rem",
+                      color: "#fff",
+                      fontSize: "0.95rem",
+                      outline: "none",
+                      width: "100%",
+                      opacity: status === "loading" ? 0.6 : 1,
+                      cursor: status === "loading" ? "not-allowed" : "text",
+                    }}
+                  />
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    style={{
+                      background: "#CCFF00",
+                      color: "#0A0A0A",
+                      border: "none",
+                      borderRadius: "8px",
+                      padding: "0.875rem 1.5rem",
+                      fontWeight: 700,
+                      fontSize: "0.95rem",
+                      cursor: status === "loading" ? "not-allowed" : "pointer",
+                      letterSpacing: "0.05em",
+                      textTransform: "uppercase",
+                      opacity: status === "loading" ? 0.8 : 1,
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    {status === "loading" ? "Subscribing..." : "Send Me the Guides"}
+                  </button>
+                </form>
+                {message && (
+                  <p style={{ color: "#ff6b6b", fontSize: "0.85rem", marginTop: "0.5rem", textAlign: "center" }}>
+                    {message}
+                  </p>
+                )}
+                <p style={{ color: "#555", fontSize: "0.75rem" }}>
+                  No spam. Unsubscribe anytime.
+                </p>
+              </>
             )}
-            <p style={{ color: "#555", fontSize: "0.75rem" }}>
-              No spam. Unsubscribe anytime.
-            </p>
           </div>
         </div>
       </section>
