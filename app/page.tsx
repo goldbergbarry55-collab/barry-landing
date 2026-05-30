@@ -1,6 +1,55 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email) {
+      setMessage("Please enter your email");
+      setStatus("error");
+      return;
+    }
+
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setStatus("error");
+        setMessage(data.error || "Something went wrong");
+        return;
+      }
+
+      setStatus("success");
+      setMessage(data.message || "Successfully subscribed!");
+      setEmail("");
+
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setStatus("idle");
+        setMessage("");
+      }, 5000);
+    } catch (error) {
+      setStatus("error");
+      setMessage("Failed to subscribe. Please try again.");
+    }
+  };
+
   return (
     <div style={{ background: "#0A0A0A", color: "#FFFFFF", fontFamily: "var(--font-montserrat), Arial, sans-serif" }}>
 
@@ -233,40 +282,61 @@ export default function Home() {
               emotional resilience. No fluff, no jargon.
             </p>
             <form
+              onSubmit={handleSubmit}
               style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}
             >
               <input
                 type="email"
                 placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={status === "loading"}
                 style={{
                   background: "#111",
-                  border: "1px solid #333",
+                  border: `1px solid ${status === "error" ? "#ff6b6b" : "#333"}`,
                   borderRadius: "8px",
                   padding: "0.875rem 1.25rem",
                   color: "#fff",
                   fontSize: "0.95rem",
                   outline: "none",
                   width: "100%",
+                  opacity: status === "loading" ? 0.6 : 1,
+                  cursor: status === "loading" ? "not-allowed" : "text",
                 }}
               />
               <button
                 type="submit"
+                disabled={status === "loading" || status === "success"}
                 style={{
-                  background: "#CCFF00",
+                  background: status === "success" ? "#44aa00" : "#CCFF00",
                   color: "#0A0A0A",
                   border: "none",
                   borderRadius: "8px",
                   padding: "0.875rem 1.5rem",
                   fontWeight: 700,
                   fontSize: "0.95rem",
-                  cursor: "pointer",
+                  cursor: status === "loading" || status === "success" ? "not-allowed" : "pointer",
                   letterSpacing: "0.05em",
                   textTransform: "uppercase",
+                  opacity: status === "loading" || status === "success" ? 0.8 : 1,
+                  transition: "all 0.3s ease",
                 }}
               >
-                Send Me the Guides
+                {status === "loading" ? "Subscribing..." : status === "success" ? "✓ Subscribed!" : "Send Me the Guides"}
               </button>
             </form>
+            {message && (
+              <p
+                style={{
+                  color: status === "error" ? "#ff6b6b" : status === "success" ? "#66bb6a" : "#888",
+                  fontSize: "0.85rem",
+                  marginTop: "0.5rem",
+                  textAlign: "center",
+                }}
+              >
+                {message}
+              </p>
+            )}
             <p style={{ color: "#555", fontSize: "0.75rem" }}>
               No spam. Unsubscribe anytime.
             </p>
