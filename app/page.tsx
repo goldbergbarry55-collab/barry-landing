@@ -2,64 +2,288 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div style={{ background: "#0A0A0A", color: "#FFFFFF", fontFamily: "var(--font-montserrat), Arial, sans-serif" }}>
+
+      {/* NAV */}
+      <nav style={{ borderBottom: "1px solid #1a1a1a", padding: "1.25rem 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: "1100px", margin: "0 auto" }}>
+        <span style={{ fontFamily: "var(--font-bebas), sans-serif", fontSize: "1.5rem", color: "#CCFF00", letterSpacing: "0.08em" }}>
+          BARRY PSYCHOLOGY
+        </span>
+        <a
+          href="https://www.instagram.com/barry.psychology"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ background: "#CCFF00", color: "#0A0A0A", padding: "0.5rem 1.25rem", borderRadius: "100px", fontWeight: 700, fontSize: "0.85rem", textDecoration: "none", letterSpacing: "0.05em" }}
+        >
+          FOLLOW ON INSTAGRAM
+        </a>
+      </nav>
+
+      {/* HERO */}
+      <section style={{ maxWidth: "1100px", margin: "0 auto", padding: "5rem 2rem 4rem" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: "1.5rem" }}>
+          <p style={{ color: "#CCFF00", fontSize: "0.85rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>
+            Psychology · Instagram · @barry.psychology
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <h1
+            style={{
+              fontFamily: "var(--font-bebas), sans-serif",
+              fontSize: "clamp(3.5rem, 8vw, 6.5rem)",
+              lineHeight: 1,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              maxWidth: "800px",
+            }}
           >
+            Understand Why You Feel{" "}
+            <span style={{ color: "#CCFF00" }}>The Way You Feel</span>
+          </h1>
+          <p style={{ color: "#888", fontSize: "1.1rem", lineHeight: 1.7, maxWidth: "560px" }}>
+            Psychology-based content for people aged 25–35 navigating anxiety,
+            overthinking, burnout, toxic relationships, and more.
+          </p>
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center", marginTop: "0.5rem" }}>
+            <a
+              href="https://www.instagram.com/barry.psychology"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ background: "#CCFF00", color: "#0A0A0A", padding: "0.875rem 2rem", borderRadius: "100px", fontWeight: 700, fontSize: "0.95rem", textDecoration: "none" }}
+            >
+              Follow on Instagram
+            </a>
+            <a
+              href="#guides"
+              style={{ border: "1px solid #333", color: "#fff", padding: "0.875rem 2rem", borderRadius: "100px", fontWeight: 600, fontSize: "0.95rem", textDecoration: "none" }}
+            >
+              Get Free Guides
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT ME */}
+      <section style={{ maxWidth: "1100px", margin: "0 auto", padding: "4rem 2rem" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "4rem",
+            flexWrap: "wrap",
+          }}
+        >
+          <div style={{ flex: "0 0 auto", position: "relative" }}>
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/images/about-me-portrait.png"
+              alt="Barry — Psychology Expert"
+              width={420}
+              height={480}
+              style={{ borderRadius: "16px", objectFit: "cover", display: "block" }}
+              loading="lazy"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+
+          <div style={{ flex: "1 1 300px", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+            <p style={{ color: "#CCFF00", fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>
+              About Me
+            </p>
+            <h2
+              style={{
+                fontFamily: "var(--font-bebas), sans-serif",
+                fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
+                lineHeight: 1.05,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+              }}
+            >
+              I Help You Make Sense of{" "}
+              <span style={{ color: "#CCFF00" }}>Your Own Mind</span>
+            </h2>
+            <p style={{ color: "#888", lineHeight: 1.8, fontSize: "1rem" }}>
+              I&apos;m Barry — a psychology content creator on a mission to help people
+              understand their emotional patterns. Every reel I post is built around
+              one question: <em style={{ color: "#ccc" }}>why do I feel this way?</em>
+            </p>
+            <p style={{ color: "#888", lineHeight: 1.8, fontSize: "1rem" }}>
+              Whether you&apos;re stuck in anxiety loops, people-pleasing, burnout, or
+              toxic relationship cycles — there&apos;s always a reason. And when you
+              understand the reason, you can change it.
+            </p>
+            <a
+              href="https://www.instagram.com/barry.psychology"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#CCFF00", fontWeight: 700, fontSize: "0.9rem", letterSpacing: "0.05em", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
+            >
+              @barry.psychology →
+            </a>
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* DIVIDER */}
+      <div style={{ height: "1px", background: "#1a1a1a", maxWidth: "1100px", margin: "0 auto 0" }} />
+
+      {/* NUMBERS DON'T LIE */}
+      <section style={{ maxWidth: "1100px", margin: "0 auto", padding: "5rem 2rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+          <p style={{ color: "#CCFF00", fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "1rem" }}>
+            Social Proof
+          </p>
+          <h2
+            style={{
+              fontFamily: "var(--font-bebas), sans-serif",
+              fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              lineHeight: 1,
+            }}
+          >
+            The Numbers{" "}
+            <span style={{ color: "#CCFF00" }}>Don&apos;t Lie</span>
+          </h2>
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "4rem", flexWrap: "wrap" }}>
+          <div style={{ flex: "1 1 300px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+            {[
+              { number: "7", label: "Reels Posted Per Week" },
+              { number: "25-35", label: "Target Age Range" },
+              { number: "11", label: "Psychology Pillars Covered" },
+              { number: "100K+", label: "People Helped" },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                style={{
+                  background: "#111",
+                  border: "1px solid #222",
+                  borderRadius: "12px",
+                  padding: "1.75rem 1.5rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.5rem",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-bebas), sans-serif",
+                    fontSize: "2.75rem",
+                    color: "#CCFF00",
+                    lineHeight: 1,
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  {stat.number}
+                </span>
+                <span style={{ color: "#888", fontSize: "0.8rem", fontWeight: 600, lineHeight: 1.4, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ flex: "0 0 auto" }}>
+            <Image
+              src="/images/numbers-growth-graphic.png"
+              alt="Growth graphic"
+              width={300}
+              height={400}
+              style={{ objectFit: "contain", display: "block" }}
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* DIVIDER */}
+      <div style={{ height: "1px", background: "#1a1a1a", maxWidth: "1100px", margin: "0 auto" }} />
+
+      {/* FREE GUIDES / NEWSLETTER */}
+      <section id="guides" style={{ maxWidth: "1100px", margin: "0 auto", padding: "5rem 2rem" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "4rem", flexWrap: "wrap" }}>
+          <div style={{ flex: "0 0 auto" }}>
+            <Image
+              src="/images/newsletter-mockup.png"
+              alt="Free Psychology Guides Newsletter"
+              width={480}
+              height={360}
+              style={{ objectFit: "contain", borderRadius: "12px", display: "block", boxShadow: "0 20px 60px rgba(204,255,0,0.08)" }}
+              loading="lazy"
+            />
+          </div>
+
+          <div style={{ flex: "1 1 300px", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+            <p style={{ color: "#CCFF00", fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>
+              Free Resource
+            </p>
+            <h2
+              style={{
+                fontFamily: "var(--font-bebas), sans-serif",
+                fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
+                lineHeight: 1.05,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+              }}
+            >
+              Get Free{" "}
+              <span style={{ color: "#CCFF00" }}>Psychology Guides</span>
+            </h2>
+            <p style={{ color: "#888", lineHeight: 1.8, fontSize: "1rem" }}>
+              Join thousands of people getting psychology-backed strategies delivered
+              monthly — practical tools for anxiety, boundaries, burnout, and
+              emotional resilience. No fluff, no jargon.
+            </p>
+            <form
+              style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}
+            >
+              <input
+                type="email"
+                placeholder="your@email.com"
+                style={{
+                  background: "#111",
+                  border: "1px solid #333",
+                  borderRadius: "8px",
+                  padding: "0.875rem 1.25rem",
+                  color: "#fff",
+                  fontSize: "0.95rem",
+                  outline: "none",
+                  width: "100%",
+                }}
+              />
+              <button
+                type="submit"
+                style={{
+                  background: "#CCFF00",
+                  color: "#0A0A0A",
+                  border: "none",
+                  borderRadius: "8px",
+                  padding: "0.875rem 1.5rem",
+                  fontWeight: 700,
+                  fontSize: "0.95rem",
+                  cursor: "pointer",
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                }}
+              >
+                Send Me the Guides
+              </button>
+            </form>
+            <p style={{ color: "#555", fontSize: "0.75rem" }}>
+              No spam. Unsubscribe anytime.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{ borderTop: "1px solid #1a1a1a", padding: "2rem", textAlign: "center" }}>
+        <p style={{ color: "#444", fontSize: "0.8rem" }}>
+          © {new Date().getFullYear()} Barry Psychology ·{" "}
+          <a href="https://www.instagram.com/barry.psychology" target="_blank" rel="noopener noreferrer" style={{ color: "#CCFF00", textDecoration: "none" }}>
+            @barry.psychology
+          </a>
+        </p>
+      </footer>
+
     </div>
   );
 }
